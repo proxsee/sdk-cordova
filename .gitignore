@@ -1,0 +1,7 @@
+# ohai!
+# For your own project, you probably wish to have a look at all the files here:
+# https://github.com/github/gitignore
+# Don't forget to have a look at the Global directory in there, too!
+*.pyc
+.DS_Store
+Thumbs.db
