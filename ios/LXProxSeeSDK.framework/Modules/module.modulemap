@@ -1,0 +1,6 @@
+framework module LXProxSeeSDK {
+  umbrella header "LXProxSeeSDK.h"
+
+  export *
+  module * { export * }
+}

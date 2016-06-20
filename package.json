@@ -1,0 +1,31 @@
+{
+	"_note": "When updating this file, update the plugin.xml too.",
+	"name": "Proxsee",
+	"version": "0.1.0",
+	"description": "Proxsee Cordova Plugin; More info in README.md or at http://www.proxsee.io/",
+	"cordova": {
+		"id": "io.proxsee",
+		"platforms": [
+			"android",
+			"ios"
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/proxsee/sdk-cordova"
+	},
+	"keywords": [
+		"proxsee",
+		"proximity",
+		"beacon",
+		"beacons",
+		"cordova-android",
+		"cordova-ios"
+	],
+	"scripts": {
+	},
+	"author": "Proxsee",
+	"license": "custom",
+	"devDependencies": {
+	}
+}

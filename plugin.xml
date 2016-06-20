@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="io.proxsee" version="0.1.0">
+	<!-- When you update this file, update the package.json too. -->
+	<!-- Reference: https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html -->
+	<name>Proxsee</name>
+	<description>Proxsee Cordova Plugin; More info in README.md or at http://www.proxsee.io/</description>
+	<license>custom</license>
+	<keywords>proxsee,proximity,beacon,beacons</keywords>
+	<js-module src="www/proxsee.js" name="proxsee">
+		<clobbers target="proxsee" />
+	</js-module>
+	<!-- TODO: Allow user to include API key in their config.xml; but how? -->
+	<engines>
+		<engine name="cordova" version=">=3.7.0" />
+	</engines>
+	<platform name="ios">
+		<framework src="ios/LXProxSeeSDK.framework" custom="true" />
+		<framework src="CoreLocation.framework" />
+   
+		<config-file target="config.xml" parent="/*">
+			<feature name="Proxsee">
+				<param name="ios-package" value="ProxseeCordovaAdapter"/>
+			</feature>
+		</config-file>
+		<header-file src="ios/ProxseeCordovaAdapter.h" />
+		<source-file src="ios/ProxseeCordovaAdapter.m" />
+	</platform>
+	<platform name="android">
+		<config-file target="config.xml" parent="/*">
+			<feature name="Proxsee">
+				<param name="android-package" value="io.proxsee.android.ProxseeCordovaAdapter" />
+			</feature>
+		</config-file>
+		<!--framework src="io.proxsee:proxsee-sdk:2.3.1" /-->
+		<framework src="android/build.gradle" custom="true" type="gradleReference" />
+		<source-file src="android/build-extras.gradle" target-dir="src/.." />
+		<source-file src="android/ProxseeCordovaAdapter.java" target-dir="src/io/proxsee/android" />
+	</platform>
+</plugin>
