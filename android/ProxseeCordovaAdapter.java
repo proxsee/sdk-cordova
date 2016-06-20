@@ -127,7 +127,7 @@ public class ProxseeCordovaAdapter extends CordovaPlugin {
 
 		@Override
 		public void didChangeTagsSet(BeaconNotificationObject beaconNotificationObject) {
-			String data = gson.toJson(beaconNotificationObject);
+			String data = gson.toJson(beaconNotificationObject)
 				// Temporary work-around for current version
 				.replace("\"mCurrentTagsChangedSet\"", "\"currentTagsChangeSet\"")
 				.replace("\"mPreviousTagsChangedSet\"", "\"previousTagsChangeSet\"")
