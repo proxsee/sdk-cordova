@@ -21,11 +21,11 @@ Furthermore, the ProxSee SDK will automatically communicate a check-in/check-out
     * [Metadata](#metadata)
     * [Check-in/Check-out](#check-in-check-out)
 * [Installation](#installation)
+    * [Permissions, and Android 6.0 runtime permissions](#permissions)
 * [Usage](#usage)
-    * [Setting up the SDK](#setup)
     * [Launching the SDK](#launching-the-sdk)
     * [Receiving Tag Changeset Notifications](#receive-tags-changeset-notifications)
-    * [Turning On/Off Monitoring](#turning-on-off-monitoring)
+    * [Turning On/Off Monitoring](#turning-monitoring-on-off)
     * [Updating Metadata](#updating-metadata)
 
 
@@ -162,7 +162,7 @@ initialize the ProxSee SDK with the Mobile API key:
 Evidently you should replace "YourApiKey" with the API key you have obtained.
 The onSuccess and onError callbacks are, in this case, optional and can be replaced with nulls if desired.
 
-### <a name="android-receive-tag-changeset-notifications"></a>Receive Tag Changeset Notifications
+### <a name="receive-tag-changeset-notifications"></a>Receive Tag Changeset Notifications
 
 To receive tag changeset notifications, simply register a listener to the "beaconNotification" event,
 just as you would any other event in Javascript. The `event.detail` member will contain the tag information.
@@ -192,7 +192,7 @@ To turn on monitoring:
 
 	proxsee.start(onSuccess, onError);
 
-### <a name="android-updating-metadata"></a>Updating metadata
+### <a name="updating-metadata"></a>Updating metadata
 
 At any point of the application lifecycle you can set and update metadata.
 This metadata is whatever you wish to associate with check-ins/check-outs, e.g. a customer ID or coupon number.
