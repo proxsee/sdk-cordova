@@ -116,18 +116,18 @@ public class ProxseeCordovaAdapter extends CordovaPlugin {
 	protected static class PSCBroadcastProxy extends ProxSeeBroadcastReceiver {
 		protected final Context ctx;
 		protected final CallbackContext callbackContext;
+		protected final Gson gson;
 
 		protected PSCBroadcastProxy(Context ctx, CallbackContext callbackContext) {
 			this.ctx = ctx.getApplicationContext();
 			this.callbackContext = callbackContext;
+			// RFC2822 date format. ISO 8601 is also an option, but is harder to parse in Java should we need to.
+			this.gson = new GsonBuilder().setDateFormat("EEE, dd MMM yyyy HH:mm:ss Z").create();
 		}
 
 		@Override
 		public void didChangeTagsSet(BeaconNotificationObject beaconNotificationObject) {
-			HashMap<String, Object> bnoData = new HashMap<>();
-			// TODO: copy data from BeaconNotificationObject to bnoData
-			//PluginResult result = new PluginResult(PluginResult.Status.OK, new JSONObject(bnoData));
-			String data = new Gson().toJson(beaconNotificationObject);
+			String data = gson.toJson(beaconNotificationObject);
 			Log.d(TAG, "Got beacon notification: " + data);
 			PluginResult result = new PluginResult(PluginResult.Status.OK, data);
 			result.setKeepCallback(true);

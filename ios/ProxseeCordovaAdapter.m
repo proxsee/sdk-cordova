@@ -56,8 +56,10 @@
 	
 	NSLocale* enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
 	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+	// Use this locale so that the date format is consistent, otherwise it varies per user -- not what we want here.
 	[dateFormatter setLocale:enUSPOSIXLocale];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZZ"];
+	// RFC2822 date format. ISO 8601 is also an option, but is harder to parse in Java should we need to.
+	[dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
 	
   _listeners = [[NSMutableDictionary alloc] init];
 	_dateFormatter = dateFormatter;
