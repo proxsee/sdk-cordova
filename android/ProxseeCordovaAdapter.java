@@ -128,6 +128,11 @@ public class ProxseeCordovaAdapter extends CordovaPlugin {
 		@Override
 		public void didChangeTagsSet(BeaconNotificationObject beaconNotificationObject) {
 			String data = gson.toJson(beaconNotificationObject);
+				// Temporary work-around for current version
+				.replace("\"mCurrentTagsChangedSet\"", "\"currentTagsChangeSet\"")
+				.replace("\"mPreviousTagsChangedSet\"", "\"previousTagsChangeSet\"")
+				.replace("\"mLastSeen\"", "\"lastSeen\"")
+				.replace("\"mSet\"", "\"tags\"");
 			Log.d(TAG, "Got beacon notification: " + data);
 			PluginResult result = new PluginResult(PluginResult.Status.OK, data);
 			result.setKeepCallback(true);
