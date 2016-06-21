@@ -114,23 +114,23 @@ see [Cordova's Get Started](https://cordova.apache.org/#getstarted).
 
 If you do not have an app created yet, create it with e.g.:
 
-	cordova create new-app-folder-name net.example.cordova "My Cordova Proxsee App"
+	cordova create new-app-folder-name net.example.cordova "My Cordova ProxSee App"
 	cd new-app-folder-name
 	cordova platform add ios
 	cordova platform add android
 
-Next, add the Proxsee plugin, e.g.:
+Next, add the ProxSee plugin, e.g.:
 
-	plugman install --platform android --project . --plugin https://github.com/proxsee/sdk-cordova
-	plugman install --platform ios     --project . --plugin https://github.com/proxsee/sdk-cordova
+	plugman install --platform android --project . --plugin https://github.com/ProxSee/SDK-Cordova
+	plugman install --platform ios     --project . --plugin https://github.com/ProxSee/SDK-Cordova
 
 ### <a name="permissions"></a>Permissions, and Android 6.0 runtime permissions
 
-Proxsee requires Bluetooth and Location access. While generally nothing special needs to be done for Bluetooth,
+ProxSee requires Bluetooth and Location access. While generally nothing special needs to be done for Bluetooth,
 in iOS and recent versions of Android this requires prompting the user for access to their location.
 (In older versions of Android, simply adding the permissions is sufficient; The plugin includes this.)
 
-On Android [you must prompt for access](https://github.com/proxsee/sdk-android#permissions).
+On Android [you must prompt for access](https://github.com/ProxSee/SDK-Android#permissions).
 Alternatively (disrecommended!) you can target an older version of Android
 (which will retain the previous "permissions granted on install" behaviour)
 by adding the following to your `config.xml` in the `<platform name="android">` tag:
@@ -140,12 +140,12 @@ by adding the following to your `config.xml` in the `<platform name="android">` 
 On iOS 8+ you must simply provide the NSLocationAlwaysUsageDescription key (and description)
 in your application's plist file. You can modify this file directly or use some other way to manage it;
 As of this writing Cordova does not do this on its own.
-Once this plist setting is provided, Proxsee will automatically prompt the user for location access when you enable it.
-*It is your responsibility to only enable Proxsee at a time which makes sense for your application.*
+Once this plist setting is provided, ProxSee will automatically prompt the user for location access when you enable it.
+*It is your responsibility to only enable ProxSee at a time which makes sense for your application.*
 
 ## <a name="usage"></a>Usage
 
-All API calls in the Proxsee Cordova plugin are:
+All API calls in the ProxSee Cordova plugin are:
 * In the proxsee namespace (e.g. `proxsee.init(...)`)
 * Have (generally optional but recommended) callbacks as the first two parameters (onSuccess and onError respectively)
 * onError callbacks all include an error message as the first parameter.
