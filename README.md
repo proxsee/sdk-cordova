@@ -124,6 +124,13 @@ Next, add the ProxSee plugin, e.g.:
 	plugman install --platform android --project . --plugin https://github.com/ProxSee/SDK-Cordova
 	plugman install --platform ios     --project . --plugin https://github.com/ProxSee/SDK-Cordova
 
+### <a name="update-sdk"></a>Update SDK
+
+It may be necessary to update the iOS SDK and/or Android SDK version;
+Currently, the plugin comes with a specific version of the ProxSee SDK and does not attempt to download the newest one.
+It may or may not have been updated, so please check the version against the version available online;
+See the CHANGELOG file for more information.
+
 ### <a name="permissions"></a>Permissions, and Android 6.0 runtime permissions
 
 ProxSee requires Bluetooth and Location access. While generally nothing special needs to be done for Bluetooth,
