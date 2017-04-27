@@ -27,6 +27,7 @@ Furthermore, the ProxSee SDK will automatically communicate a check-in/check-out
     * [Receiving Tag Changeset Notifications](#receive-tags-changeset-notifications)
     * [Turning On/Off Monitoring](#turning-monitoring-on-off)
     * [Updating Metadata](#updating-metadata)
+* [Tested with](#Tested with)
 
 
 ## <a name="how-does-proxsee-sdk-works"></a>How Does the ProxSee SDK Work?
@@ -111,6 +112,8 @@ One special type of check-out is the implied check-out for a virtual beacon. Thi
 These instructions assume you have Cordova already installed and running
 (such as installing node.js, npm, cordova, and plugman) --
 see [Cordova's Get Started](https://cordova.apache.org/#getstarted).
+However, make sure you have at least Cordova 6.4.0 installed.
+Update with `npm install -g cordova`, although macOS users may need to uninstall first.
 
 If you do not have an app created yet, create it with e.g.:
 
@@ -119,17 +122,14 @@ If you do not have an app created yet, create it with e.g.:
 	cordova platform add ios
 	cordova platform add android
 
+Note that you may need to specify `android@6.2.1` due to earlier versions of Cordova's Android platform
+relying on temporary templates that are no longer provided by the Android SDK.
+If you get an error to the effect that the Gradle wrapper cannot be found, this solves that issue.
+
 Next, add the ProxSee plugin, e.g.:
 
 	plugman install --platform android --project . --plugin https://github.com/ProxSee/SDK-Cordova
 	plugman install --platform ios     --project . --plugin https://github.com/ProxSee/SDK-Cordova
-
-### <a name="update-sdk"></a>Update SDK
-
-It may be necessary to update the iOS SDK and/or Android SDK version;
-Currently, the plugin comes with a specific version of the ProxSee SDK and does not attempt to download the newest one.
-It may or may not have been updated, so please check the version against the version available online;
-See the CHANGELOG file for more information.
 
 ### <a name="permissions"></a>Permissions, and Android 6.0 runtime permissions
 
@@ -223,3 +223,10 @@ The data object must be valid as JSON, in other words you cannot include e.g. fu
 	};
 	
 	proxsee.setData(handler.successCB, handler.failCB, dataObj);
+
+## <a name="tested"></a>Tested with
+
+* Node 6.10.1 (npm 3.10.10, for macOS nvm 0.33.2)
+* Cordova 6.5.0
+* Android SDK tools 26.0.1 / platform-tools 25.0.5 / build tools 25.0.3, Xcode 8.2.1
+* Windows 7, macOS 10.11.6 El Capitan

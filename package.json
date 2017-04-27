@@ -17,8 +17,15 @@
 	"keywords": [
 		"proxsee",
 		"proximity",
+		"geo-fence",
+		"geofence",
+		"iBeacon",
 		"beacon",
 		"beacons",
+		"virtual beacon",
+		"virtual beacons",
+		"sdk",
+		"ecosystem:cordova",
 		"cordova-android",
 		"cordova-ios"
 	],
