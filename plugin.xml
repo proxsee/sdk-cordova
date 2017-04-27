@@ -11,11 +11,13 @@
 	</js-module>
 	<!-- TODO: Allow user to include API key in their config.xml; but how? -->
 	<engines>
-		<engine name="cordova" version=">=3.7.0" />
+		<!-- The requirement is actually 6.4.0, but v6.5.0 thinks it is 6.2.0?! -->
+		<engine name="cordova" version=">=6.2.0" />
+		<engine name="cordova-ios" version=">=4.3.0" />
 	</engines>
 	<platform name="ios">
-		<framework src="ios/LXProxSeeSDK.framework" custom="true" />
 		<framework src="CoreLocation.framework" />
+		<framework src="ProxSeeSDK" type="podspec" spec="~> 2.4.1" />
    
 		<config-file target="config.xml" parent="/*">
 			<feature name="Proxsee">
@@ -31,8 +33,7 @@
 				<param name="android-package" value="io.proxsee.android.ProxseeCordovaAdapter" />
 			</feature>
 		</config-file>
-		<!--framework src="io.proxsee:proxsee-sdk:2.3.1" /-->
-		<framework src="android/build.gradle" custom="true" type="gradleReference" />
+		<framework src="io.proxsee:proxsee-sdk:2.4.2" />
 		<source-file src="android/build-extras.gradle" target-dir="src/.." />
 		<source-file src="android/ProxseeCordovaAdapter.java" target-dir="src/io/proxsee/android" />
 	</platform>
