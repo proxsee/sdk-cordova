@@ -1,7 +1,7 @@
 {
 	"_note": "When updating this file, update the plugin.xml too.",
 	"name": "Proxsee",
-	"version": "0.1.0",
+	"version": "2.4.0",
 	"description": "Proxsee Cordova Plugin; More info in README.md or at http://www.proxsee.io/",
 	"cordova": {
 		"id": "io.proxsee",

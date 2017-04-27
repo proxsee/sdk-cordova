@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="io.proxsee" version="0.1.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="io.proxsee" version="2.4.0">
 	<!-- When you update this file, update the package.json too. -->
 	<!-- Reference: https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html -->
 	<name>Proxsee</name>
