@@ -11,6 +11,7 @@ The content in this document is divided into the following sections:
         - [Beacon](#beacon) 
         - [Virtual Beacon](#virtual-beacon)
             - [Deployment](#deployment)
+            - [Limitations](#limitations)
             - [Accuracy](#accuracy)
         - [Mobile API Key](#mobile-api-key)
         - [Locations](#locations)
@@ -23,8 +24,8 @@ The content in this document is divided into the following sections:
     - [Create an App](#create-an-app)
     - [Add the ProxSee SDK](#add-the-proxsee-sdk)
     - [Handle Permissions](#handle-permissions)
-    - [Request Location Access on iOS](#request-location-access-on-ios)
-    - [Request Location Access on Android](#request-location-access-on-android) 
+       - [Request Location Access on iOS](#request-location-access-on-ios)
+       - [Request Location Access on Android](#request-location-access-on-android) 
     - [Launch the ProxSee SDK](#launch-the-proxsee-sdk)
 - [Section 3: Using the ProxSee SDK](section-3-using-the-proxsee-sdk)
     - [Handle Tag Changeset Notifications](#handle-tag-changeset-notifications)
@@ -36,6 +37,7 @@ The content in this document is divided into the following sections:
     - [Update Metadata](#update-metadata)
  
 ## Section 1: Introducing the ProxSee SDK
+
  
 ### Background
  
@@ -50,14 +52,15 @@ Once initialized, the ProxSee SDK associates a unique identifier with the user's
 - **Enter event**: The user approaches the beacon or enters the virtual beacon (geo-fence) circular boundary. The ProxSee SDK sends check-in information to the central platform when an enter event is detected.
 - **Exit event**: The user moves away from the beacon or exists the virtual beacon (geo-fence) circular boundary. The ProxSee SDK sends check-out information to the central platform when an exit event is detected.  
  
+
 Along with monitoring the beacons/virtual beacons, the ProxSee SDK also queries the central platform for tag information associated with a beacon/virtual beacon and automatically loads and caches information about nearby beacons/virtual beacons.
  
 The ProxSee SDK allows your application to:
  
-- **Listen For and Receive Tag Changeset Notifications**: Your application can listen for and receive tag changeset notifications sent by the ProxSee SDK. You can update the tags and positional information associated to a beacon/virtual beacon through the ProxSee Admin Portal without having to update your ProxSee SDK or the physical, deployed beacons.
-- **Turn Monitoring On/Off**: The ProxSee SDK monitors beacons/virtual beacons, broadcasts check-ins/check-outs, send tag changeset notifications, and update metadata. At any point in your application, you can turn on or off the ProxSee SDK, which turns on or off monitoring. 
-- **Send Metadata**: You can send additional information about a user such as account information and user IDs to the ProxSee SDK. When the ProxSee SDK receives metadata it associates it with the user's check-ins, which helps you identify users and devices among the collected data. 
- 
+- **Listen For and Receive Tag Changeset Notifications**: Your application can listen for and receive tag changeset notifications sent by the ProxSee SDK. You can update the tags and positional information associated to a beacon/virtual beacon through the ProxSee Admin Portal without having to update your ProxSee SDK or the physical, deployed beacons. See [Handle Tag Changeset Notifications](#handle-tag-changeset-notifications).
+- **Start/Stop the ProxSee SDK**: The ProxSee SDK monitors beacons/virtual beacons, broadcasts check-ins/check-outs, send tag changeset notifications, and update metadata. At any point in your application, you can start/stop the ProxSee SDK, which in turn stops/starts monitoring. See [Start/Stop the ProxSee SDK](#start-stop-the-proxsee-sdk).
+- **Update Metadata**: You can send additional information about a user such as account information and user IDs to the ProxSee SDK. When the ProxSee SDK receives metadata it associates it with the user's check-ins, which helps you identify users and devices among the collected data. See [Update Metadata](#update-metadata).
+
 ### Key Concepts
  
 #### Beacon
@@ -72,16 +75,20 @@ Virtual beacons work in concert with physical beacons. In order to work properly
  
 - **Bad Placement**: Putting a virtual beacon in the parking lot of a mall and a physical beacon inside the mall would not allow you to detect people approaching from the parking lot.  The ProxSee SDK would send notifications of users hitting the beacon in the mall first, not in the parking lot. 
 - **Good Placement**: Putting a virtual beacon on Rent a Car Road in Las Vegas and a physical beacon inside the arrival area of the Las Vegas airport would allow you to detect people coming off of an airplane and then detect those that went to the rental car area. 
+
+
  
 ###### Deployment
  
 - For best results, virtual beacons should be deployed with a medium or greater range.
 - Virtual beacons should be placed in areas where a user is likely to remain or traverse for several seconds/minutes.
- 
+
+
 ##### Limitations
  
 - You are limited to 5 virtual beacons per location.
 - The outer radius of a virtual beacon must be more than 200 meters in distance from the outer radius of any other beacon (physical or virtual).
+
  
 ##### Accuracy 
  
@@ -91,6 +98,7 @@ The accuracy of virtual beacons is based on the GPS/network provider; however, t
 - The capabilities of the user’s mobile device
 - The geo-location abilities of the user’s mobile device
 - Indoor placement (Note: This may significantly affect the accuracy of the virtual beacon)
+
  
 The ProxSee SDK is also expected to receive a location update whenever the device is moved approximately 100 meters. in general, the closer you are to a beacon the more accurate the reported distance. 
  
@@ -117,7 +125,7 @@ To add and assign/remove tags, see the Tags section of the ProxSee Admin Portal.
  
 Metadata can be used to provide additional information about a user and their device, such as user ID and user preferences. The metadata sent to the ProxSee SDK is then associated to each check-in by the user’s device.
  
-See the Update Metadata section in this document for instructions on how to add metadata.  
+See the [Update Metadata](#update-metadata) section in this document for instructions on how to add metadata.  
  
 #### Check-In/Check-Out
  
@@ -144,6 +152,7 @@ Implementing the ProxSee SDK for Cordova is a simple five-step process:
 - [Add the ProxSee SDK](#add-the-proxsee-sdk)
 - [Handle Permissions](#handle-permissions)
 - [Launch the ProxSee SDK](#launch-the-proxsee-sdk)
+
  
 ### Prerequisites
  
@@ -157,6 +166,7 @@ The ProxSee SDK also requires:
 - Active Location services in order to function with virtual beacons
 - An Internet connection 
  
+
 ### Generate a Mobile API Key
  
 In order to use the ProxSee SDK, you will need to generate a Mobile API Key.
@@ -170,6 +180,7 @@ In order to use the ProxSee SDK, you will need to generate a Mobile API Key.
  
 **Note**: If you have multiple applications, you may wish to generate a unique Mobile API Key for each one.
  
+
 ### Create an App
  
 This step is only required if you have not yet created your Cordova app. The following sample depicts how to create a Cordova app:
@@ -255,9 +266,10 @@ The API calls in the ProxSee SDK for Cordova:
 The following actions can be performed with the ProxSee SDK:
  
 - [Handle Tag Changeset Notifications](#handle-tag-changeset-notifications)
-- [Turn On/Off the ProxSee SDK](#turn-on-off-the-proxsee-sdk)
+- [Start/Stop the ProxSee SDK](#start-stop-the-proxsee-sdk)
 - [Update Metadata](#update-metadata)
  
+
 ### Handle Tag Changeset Notifications
  
 #### Register a Listener
@@ -282,21 +294,21 @@ proxsee.unregisterListener(onSuccess, onError, id);
 
 ```
 
-### Turn On/Off the ProxSee SDK
+### Start/Stop the ProxSee SDK
 
-At any point of the application lifecycle you can turn on or off the SDK to toggle monitoring beacons, broadcasting check-ins/check-outs, notifying of tag changes, and updating metadata.
+At any point of the application lifecycle you can start/stop the SDK to toggle monitoring beacons, broadcasting check-ins/check-outs, notifying of tag changes, and updating metadata.
  
-#### Turn On the ProxSee SDK
+#### Start the ProxSee SDK
  
-To turn on the ProxSee SDK and in turn enable beacon monitoring, check-in/check-out broadcasts, tag changeset notifications, and metadata updates:
+To start the ProxSee SDK and in turn enable beacon monitoring, check-in/check-out broadcasts, tag changeset notifications, and metadata updates:
  
 ```
 proxsee.start(onSuccess, onError);
  
 ```
-#### Turn Off the ProxSee SDK
+#### Stop the ProxSee SDK
  
-To turn off the ProxSee SDK and in turn disable beacon monitoring, check-in/check-out broadcasts, tag changeset notifications, and metadata updates:
+To stop the ProxSee SDK and in turn disable beacon monitoring, check-in/check-out broadcasts, tag changeset notifications, and metadata updates:
 
 
 ```
