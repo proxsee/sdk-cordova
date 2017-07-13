@@ -34,6 +34,7 @@ The content in this document is divided into the following sections:
         - [Start the ProxSee SDK](#start-the-proxsee-sdk)
         - [Stop the ProxSee SDK](#stop-the-proxsee-sdk)
     - [Update Metadata](#update-metadata)
+- [Section 4: FAQs](#section-4-faqs)
  
 ## Section 1: Introducing the ProxSee SDK
 
@@ -344,5 +345,48 @@ The data object must be valid as JSON (e.g., cannot include functions). For exam
 	proxsee.setData(handler.successCB, handler.failCB, dataObj);
 
 ```
+## Section 4: FAQs
+
+**Will the ProxSee SDK impact my mobile phone’s battery?** 
+
+- iOS and Android
+    - Yes. The ProxSee SDK will draw approximately 1-2% of the mobile phone’s battery. 
+
+**How long does it take for the ProxSee SDK to detect a beacon?**
+
+- iOS
+    - Beacons: 0 to a few seconds. 
+    - Virtual beacons: The detection of virtual beacons is based on movement and location changes. The ProxSee SDK is expected to detect a virtual beacon whenever the mobile device is moved approximately 100 meters. 
+- Android
+    - Beacons: 0 to a few seconds
+    - Virtual beacons: 2.5 to 5 minutes
+
+**As a third-party developer using the ProxSee SDK, do I need to do anything if my application is rebooted?**
+
+- iOS and Android
+    - Refer to the [Launch the ProxSee SDK](#launch-the-proxsee-sdk) section for details.
+
+**What happens when Bluetooth is disabled?**
+
+- iOS and Android
+    - Scanning for physical beacons is paused while scanning for virtual beacons will continue. Once Bluetooth is re-enabled, scanning for physical beacons will resume. Note: The ProxSee SDK must have monitoring enabled in order to receive events.
+
+**What happens when Location services are disabled?**
+
+- Android only
+    - The ProxSee SDK needs to be enabled to receive events. Assuming the ProxSee SDK is enabled, if Location services are disabled, the detection of virtual beacons will be paused. It is noted that on Nexus 5 if locations services are disabled, scanning for physical beacons will be paused as well. Once Location services are re-enabled, the detection of virtual beacons will resume.
+
+
+**What happens when Location permissions are disabled?**
+
+- iOS
+    - Scanning for both physical beacons and virtual beacons will be paused. Once location is turned back on, scanning for both physical beacons and virtual beacons will resume. Note: The ProxSee SDK must have monitoring enabled in order to receive events. 
+- Android
+    - On Android 6, permissions can be enabled/disabled. When you disable Location permissions the OS will restart the application. Assuming the ProxSee SDK is enabled,  it will resume, but the monitoring of beacons and virtual beacons will be paused. Once Location permissions are re-enabled, the monitoring of beacons and virtual beacons will be resumed. 
+
+
+
  
- 
+
+
+
